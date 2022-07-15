@@ -1,6 +1,6 @@
 const UserService = require('../services/UserService');
 
-const getLogin = async (req, res) => {
+const createLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -8,11 +8,9 @@ const getLogin = async (req, res) => {
       return res.status(400).json({ message: 'Some required fields are missing' });
     }
 
-    const result = await UserService.getLogin({ email, password });
+    const result = await UserService.createLogin({ email, password });
 
-    if (!result) return null;
-
-    return res.send('Foi');
+    return res.status(200).json(result);
   } catch (error) {
     console.error(error.message);
 
@@ -21,5 +19,5 @@ const getLogin = async (req, res) => {
 };
 
 module.exports = {
-  getLogin,
+  createLogin,
 };
