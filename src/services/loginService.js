@@ -5,8 +5,6 @@ const login = async (userEmail) => {
     where: { email: userEmail },
   });
 
-  if (!result) return null;
-
   return result;
 };
 
