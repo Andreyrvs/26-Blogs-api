@@ -17,8 +17,8 @@ module.exports = async (req, res, next) => {
     req.user = payload;
 
     return next();
-  } catch (error) {
-    error.statusCode = 401;
-    return next(error);
+  } catch (err) {
+    err.statusCode = 401;
+    return next(err);
   }
 };
