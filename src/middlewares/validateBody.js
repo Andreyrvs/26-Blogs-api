@@ -9,7 +9,7 @@ module.exports = async (req, _res, next) => {
     return next(err);
   } 
 
-  const result = await loginService.login(email);
+  const result = await loginService.getLogin(email, password);
   console.log(result);
   if (!result) {
     const err = new Error('Invalid fields');
