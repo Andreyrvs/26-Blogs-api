@@ -10,11 +10,12 @@ module.exports = async (req, _res, next) => {
   } 
 
   const result = await loginService.login(email);
+  console.log(result);
   if (!result) {
     const err = new Error('Invalid fields');
     err.statusCode = 400;
   
-    throw next(err);
+    return next(err);
   }
   return next();
 };
