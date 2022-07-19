@@ -13,7 +13,7 @@ module.exports = async (req, res, next) => {
     };
 
     const token = jwt.sign(payload, JWT_SECRET, {
-      expiresIn: '14min',
+      expiresIn: '5s',
       algorithm: 'HS256',
     });
 
