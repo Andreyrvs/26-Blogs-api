@@ -11,7 +11,8 @@ app.use(express.json());
 
 app.post('/login', middlewares.validadeBody, controllers.login);
 app.post('/user', middlewares.validadeUser, controllers.newUser);
-app.get('/user', middlewares.auth, controllers.user);
+app.get('/user', middlewares.auth, controllers.user.getAll);
+app.get('/user/:id', middlewares.auth, controllers.user.getById);
 app.use(middlewares.error);
 // ...
 
