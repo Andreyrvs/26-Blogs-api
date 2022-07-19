@@ -10,8 +10,8 @@ const app = express();
 app.use(express.json());
 
 app.post('/login', middlewares.validadeBody, controllers.login);
-app.post('/user', middlewares.validadeUser, controllers.user);
-app.get('/user', middlewares.auth, controllers.userAll);
+app.post('/user', middlewares.validadeUser, controllers.newUser);
+app.get('/user', middlewares.auth, controllers.user);
 app.use(middlewares.error);
 // ...
 
