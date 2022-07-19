@@ -17,7 +17,7 @@ module.exports = async (req, res, next) => {
   isTokenExist(authorization, next);
     const payload = jwt.verify(authorization, JWT_SECRET, (error) => {
       if (error) {
-        const err = new Error('Token not found');
+        const err = new Error('Expired or invalid token');
         err.statusCode = 401;
     
         return next(err);

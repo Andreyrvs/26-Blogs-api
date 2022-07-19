@@ -32,7 +32,7 @@ module.exports = async (req, _res, next) => {
   isValidPassword(password, next);
   isValidEmail(email, next);
 
-  const login = await loginService.login(email);
+  const login = await loginService.getEmail(email);
   if (login) {
     const err = new Error('User already registered');
     err.statusCode = 409;

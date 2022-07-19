@@ -7,8 +7,15 @@ const getLogin = async (email, password) => {
 
   return result;
 };
+const getEmail = async (email) => {
+  const result = await User.findOne({
+    where: { email },
+  });
+
+  return result;
+};
 
 module.exports = {
   getLogin,
-
+  getEmail,
 };
