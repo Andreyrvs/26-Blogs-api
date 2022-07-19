@@ -6,7 +6,7 @@ module.exports = async (req, res, next) => {
   const { authorization } = req.headers;
 
   if (!authorization) {
-    const err = new Error('Token não encontrado');
+    const err = new Error('Token not found');
     err.statusCode = 401;
 
     return next(err);

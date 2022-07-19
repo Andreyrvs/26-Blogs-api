@@ -1,15 +1,10 @@
 const jwt = require('jsonwebtoken');
-// const loginService = require('../services/loginService');
 
 const { JWT_SECRET } = process.env;
 
 module.exports = async (req, res, next) => {
   try {
-    const { error,
-      //  email, password 
-      } = req.body;
-
-    // const result = await loginService.login(email);
+    const { error } = req.body;
 
     if (error) return next(error);
 
