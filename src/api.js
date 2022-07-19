@@ -18,6 +18,7 @@ app.post('/categories',
   middlewares.auth,
   middlewares.body.isCategoryValid,
   controllers.category.create);
+app.get('/categories', middlewares.auth, controllers.category.getAll);
 
 app.use(middlewares.error);
 // ...
