@@ -18,6 +18,19 @@ const create = async (req, res, __next) => {
   }
 };
 
+const getAll = async (req, res, __next) => {
+  try {
+    const allCategories = await categoryService.getAll();
+
+    return res.status(200).json(allCategories);
+  } catch (error) {
+    console.error(error);
+
+    return res.status(500).json({ message: 'Algo deu errado' });
+  }
+};
+
 module.exports = {
   create,
+  getAll,
 };
