@@ -9,10 +9,16 @@ const app = express();
 
 app.use(express.json());
 
-app.post('/login', middlewares.validadeBody, controllers.login.logIn);
+app.post('/login', middlewares.validadeBody.isLoginValid, controllers.login.logIn);
 app.post('/user', middlewares.validadeUser, controllers.user.create);
 app.get('/user', middlewares.auth, controllers.user.getAll);
 app.get('/user/:id', middlewares.auth, controllers.user.getById);
+
+app.post('/categories',
+  middlewares.auth,
+  middlewares.validadeBody.isCategoryValid,
+  controllers.category.create);
+
 app.use(middlewares.error);
 // ...
 
