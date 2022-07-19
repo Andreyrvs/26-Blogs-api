@@ -1,23 +1,17 @@
-const jwt = require('jsonwebtoken');
+const userService = require('../services/userService');
 
-const { JWT_SECRET } = process.env;
-
-module.exports = async (req, res, _next) => {
+module.exports = async (_req, res, _next) => {
   try {
-    const payload = {
-      displayName: req.body.displayName,
-      email: req.body.email,
-    };
+    const getUser = await userService.getAll();
+    console.log(getUser);
+    if (!getUser) {
+      return res.status(404).json({ message: 'User Not Found' });
+    }
 
-    const token = jwt.sign(payload, JWT_SECRET, {
-      expiresIn: '14min',
-      algorithm: 'HS256',
-    });
-
-    return res.status(201).json({ token });
+    return res.status(200).json(getUser);
   } catch (error) {
-    console.error(error.message);
-  
+    console.error(error);
+
     return res.status(500).json({ message: 'Algo deu errado' });
   }
 };
