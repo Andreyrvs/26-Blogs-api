@@ -1,6 +1,29 @@
+const jwt = require('jsonwebtoken');
 const userService = require('../services/userService');
 
-const getAll = async (req, res, __next) => {
+const { JWT_SECRET } = process.env;
+
+const create = (req, res, __next) => {
+  try {
+    const payload = {
+      displayName: req.body.displayName,
+      email: req.body.email,
+    };
+
+    const token = jwt.sign(payload, JWT_SECRET, {
+      expiresIn: '15min',
+      algorithm: 'HS256',
+    });
+
+    return res.status(201).json({ token });
+  } catch (error) {
+    console.error(error.message);
+  
+    return res.status(500).json({ message: 'Algo deu errado' });
+  }
+};
+
+const getAll = async (__req, res, __next) => {
   try {
     const getUser = await userService.getAll();
 
@@ -36,4 +59,5 @@ const getById = async (req, res, __next) => {
 module.exports = {
   getAll,
   getById,
+  create,
 };

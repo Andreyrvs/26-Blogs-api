@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 
 const { JWT_SECRET } = process.env;
 
-module.exports = async (req, res, next) => {
+const logIn = async (req, res, next) => {
   try {
     const { error } = req.body;
 
@@ -23,4 +23,8 @@ module.exports = async (req, res, next) => {
   
     return res.status(500).json({ message: 'Algo deu errado' });
   }
+};
+
+module.exports = {
+  logIn,
 };
