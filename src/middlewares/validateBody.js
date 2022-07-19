@@ -1,6 +1,6 @@
 const loginService = require('../services/loginService');
 
-module.exports = async (req, _res, next) => {
+const isLoginValid = async (req, res, next) => {
   const { email, password } = req.body;
   if (email.length === 0 || password.length === 0) {
     const err = new Error('Some required fields are missing');
@@ -17,4 +17,21 @@ module.exports = async (req, _res, next) => {
     return next(err);
   }
   return next();
+};
+
+const isCategoryValid = async (req, res, next) => {
+  const { name } = req.body;
+  if (!name) {
+    const err = new Error('"name" is required');
+  
+    err.statusCode = 400;
+  
+    return next(err);
+  }
+  return next();
+};
+
+module.exports = {
+  isLoginValid,
+  isCategoryValid,
 };
