@@ -10,7 +10,6 @@ module.exports = async (req, _res, next) => {
   } 
 
   const result = await loginService.getLogin(email, password);
-  console.log(result);
   if (!result) {
     const err = new Error('Invalid fields');
     err.statusCode = 400;
