@@ -1,11 +1,11 @@
 const error = require('./error');
 const auth = require('./auth');
-const validadeBody = require('./validateBody');
-const validadeUser = require('./validateUser');
+const body = require('./body');
+const user = require('./user');
 
 module.exports = {
   auth,
   error,
-  validadeBody,
-  validadeUser,
+  body,
+  user,
 };

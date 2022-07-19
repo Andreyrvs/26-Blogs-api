@@ -1,6 +1,6 @@
 const loginService = require('../services/loginService');
 
-const isLoginValid = async (req, res, next) => {
+const isLoginValid = async (req, __res, next) => {
   const { email, password } = req.body;
   if (email.length === 0 || password.length === 0) {
     const err = new Error('Some required fields are missing');
@@ -19,7 +19,7 @@ const isLoginValid = async (req, res, next) => {
   return next();
 };
 
-const isCategoryValid = async (req, res, next) => {
+const isCategoryValid = async (req, __res, next) => {
   const { name } = req.body;
   if (!name) {
     const err = new Error('"name" is required');

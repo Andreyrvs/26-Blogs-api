@@ -26,7 +26,7 @@ const isValidEmail = (email, next) => {
   }
 };
 
-module.exports = async (req, _res, next) => {
+const validateUser = async (req, __res, next) => {
   const { displayName, email, password, image } = req.body;
   isValidDisplayName(displayName, next);
   isValidPassword(password, next);
@@ -38,7 +38,11 @@ module.exports = async (req, _res, next) => {
     err.statusCode = 409;
     return next(err);
   }
- await userService.user({ displayName, email, password, image });
-
+  await userService.user({ displayName, email, password, image });
+  
   return next();
+};
+
+module.exports = {
+  validateUser,
 };
