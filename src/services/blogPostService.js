@@ -11,6 +11,7 @@ const create = async ({ title, content, categoryIds, jwtDecoded }) => {
     }), []);
 
     await PostCategory.bulkCreate(newPostCategory, { transaction: t });
+    return post;
   });
   console.log(result);
   return result;
