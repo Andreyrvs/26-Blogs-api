@@ -1,26 +1,23 @@
-const Sequelize = require('sequelize');
-const config = require('../database/config/config');
-const categoryService = require('../services/categoryService');
+const jwt = require('jsonwebtoken');
 const blogPostService = require('../services/blogPostService');
 
-const sequelize = new Sequelize(config.development);
-
+const { JWT_SECRET } = process.env;
 const create = async (req, res, __next) => {
   try {
-    const result = await sequelize.transaction(async (t) => {
-      const post = await blogPostService.bulkCreate({
+    const { title, content, categoryIds } = req.body;
+    const { authorization } = req.headers;
 
-      }, { transaction: t });
-      
-      await categoryService.create({
-        
-      }, { transaction: t });
-    res.staus(201).json(result);
-    });
+  const jwtDecoded = jwt.verify(authorization, JWT_SECRET, (__err, decoded) => decoded.email);
+  
+    const result = await blogPostService.create(
+      { title, content, categoryIds, jwtDecoded },
+    );
+
+  return res.status(201).json(result);
   } catch (error) {
     console.error(error);
 
-    return res.status(500).json({ message: 'Algo deu errado' });
+    return res.status(500).json({ error: error.message });
   }
 };
 
