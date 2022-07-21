@@ -1,19 +1,22 @@
 const jwt = require('jsonwebtoken');
+const loginService = require('../services/loginService');
 
 const { JWT_SECRET } = process.env;
 
 const logIn = async (req, res, next) => {
   try {
-    const { error } = req.body;
+    const { error, email } = req.body;
 
     if (error) return next(error);
 
+    const emailId = await loginService.getEmail(email);
+
     const payload = {
-      email: req.body.email,
+      email: emailId.id,
     };
 
     const token = jwt.sign(payload, JWT_SECRET, {
-      expiresIn: '15m',
+      expiresIn: '55m',
       algorithm: 'HS256',
     });
 
