@@ -12,7 +12,18 @@ const getAll = async () => {
   return result;
 };
 
+const getCategoryId = async (categoryIds) => {
+  const { count } = await Category.findAndCountAll({
+    where: {
+      id: categoryIds,
+    },
+  });
+
+  return count;
+};
+
 module.exports = {
   create,
   getAll,
+  getCategoryId,
 };
