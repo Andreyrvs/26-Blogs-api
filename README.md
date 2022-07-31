@@ -1,16 +1,33 @@
-# 🚧 README em construção 🚧
+# Blogs API
 
-<!-- Olá, Tryber!
+## Contexto
 
-Esse é apenas um arquivo inicial para o README do seu projeto.
+Este projeto trata-se de uma API e um banco de dados para a produção de conteúdo para um blog!
 
-É essencial que você preencha esse documento por conta própria, ok?
+## Técnologias usadas
 
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
+Back-end:
+> Desenvolvido usando: NodeJS, ExpressJS, Sequelize, JWT
 
-⚠️ IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
+## Instalando Dependências
 
--->
+* clone o projeto:
+
+  ```bash
+  git clone git@github.com:Andreyrvs/blogs-api.git
+  ```
+
+> Backend
+
+  ```bash
+    cd blogs-api
+    npm install
+  ```
+
+## Executando aplicação
+
+* Para rodar o back-end:
+
+  ```bash
+    npm start
+  ```
