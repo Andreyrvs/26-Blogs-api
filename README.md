@@ -41,13 +41,13 @@ Adquiri essas habilidades ao desenvolver esse projeto:
 
   > Docker
 
-  :heavy_exclamation_mark: Rode os serviços node e db com o comando:
+  :heavy_exclamation_mark: Rode os serviços **node** e **db** com o comando.
 
   ```bash
   docker-compose up -d --build
   ```
 
-  - Esses serviços irão inicializar um container chamado blogs_api e outro chamado blogs_api_db;
+  - Esses serviços irão inicializar um container chamado `blogs_api` e outro chamado `blogs_api_db`.
 
   ```bash
   docker exec -it blogs_api bash
@@ -66,7 +66,7 @@ Adquiri essas habilidades ao desenvolver esse projeto:
 
 ## Executando aplicação
 
-- Para rodar o Banco de dados
+- Para rodar o `Banco de dados`
 
   ```bash
   npm run drop
@@ -87,7 +87,7 @@ Adquiri essas habilidades ao desenvolver esse projeto:
   # npx sequelize-cli db:seed:all
   ```
 
-- Para rodar o Back-end:
+- Para rodar o `Back-end`:
 
   ```bash
   cd api/ && npm start
