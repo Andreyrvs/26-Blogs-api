@@ -39,7 +39,7 @@ Adquiri essas habilidades ao desenvolver esse projeto:
   git clone git@github.com:Andreyrvs/26-blogs-api.git
   ```
 
-  > Docker
+> Docker
 
   :heavy_exclamation_mark: Rode os serviços **node** e **db** com o comando.
 
@@ -47,20 +47,15 @@ Adquiri essas habilidades ao desenvolver esse projeto:
   docker-compose up -d --build
   ```
 
-  - Esses serviços irão inicializar um container chamado `blogs_api` e outro chamado `blogs_api_db`.
+  > Esses serviços irão inicializar um container chamado `blogs_api` e outro chamado `blogs_api_db`.
 
   ```bash
   docker exec -it blogs_api bash
   ```
 
-  ```bash
-  npm install
-  ```
-
-  > Back-end
+> Back-end
 
   ```bash
-  cd 26-blogs-api
   npm install
   ```
 
@@ -89,6 +84,14 @@ Adquiri essas habilidades ao desenvolver esse projeto:
 
 - Para rodar o `Back-end`:
 
+  :warning: Use esses comandos dentro do container
+
   ```bash
-  cd api/ && npm start
+  npm start
+  ```
+
+- Modo desenvolvimento:
+
+  ```bash
+  npm run debug
   ```
