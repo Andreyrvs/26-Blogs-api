@@ -1,7 +1,5 @@
 const express = require('express');
 
-// ...
-
 const controllers = require('./controllers');
 const middlewares = require('./middlewares');
 
