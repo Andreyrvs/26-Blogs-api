@@ -1,0 +1,39 @@
+openapi: 3.0.3
+info:
+  title: Blogs API - OpenAPI 3.0
+  version: 1.0.0
+  description: >-
+    Este projeto trata-se de uma API e um banco de dados para a produção de
+    conteúdo para um blog!
+    
+    
+    Alguns links úteis:
+    
+    - [Repositorio Blogs API](https://github.com/Andreyrvs/26-blogs-api)
+
+  contact:
+    email: cortaesai@gmail.com
+    name: Andrey
+    url: https://www.linkedin.com/in/andreyrv/
+    
+servers:
+  - url: http://localhost:3000/
+  - url: https://26-blogs-api-production.up.railway.app/
+tags:
+  - name: login
+    description: Login da Aplicação
+  - name: user
+    description: Tudo sobre os usuários
+  - name: categories
+    description: Tudo sobre categoria dos posts
+paths:
+  /login:
+    
+components:
+  schemas:
+    Login:
+    
+  # requestBodies:
+
+  securitySchemes:
+

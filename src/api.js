@@ -1,11 +1,17 @@
 const express = require('express');
 
+const swaggerUi = require('swagger-ui-express');
+const YAML = require('yamljs');
 const controllers = require('./controllers');
 const middlewares = require('./middlewares');
+
+const swaggerDocument = YAML.load('./swagger.yaml');
 
 const app = express();
 
 app.use(express.json());
+app.use('/', swaggerUi.serve);
+app.get('/', swaggerUi.setup(swaggerDocument));
 
 app.post('/login', middlewares.body.isLoginValid, controllers.login.logIn);
 app.post('/user', middlewares.user.validateUser, controllers.user.create);
