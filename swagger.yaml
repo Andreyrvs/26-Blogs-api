@@ -27,13 +27,81 @@ tags:
   - name: categories
     description: Tudo sobre categoria dos posts
 paths:
+  /health:
+    get:
+      tags:
+        - health
+      summary: Status da API
+      description: Retorna um objeto com dados de tempo"
+      responses:
+        '200':
+          description: Operação bem sucedida
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Health'
   /login:
-    
+    post:
+      tags:
+        - login
+      summary: Loga o palestrante no sistema.
+      description: ''
+      requestBody:
+        description: Insira o Palestrante com respectivos dados
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginBody'
+      responses:
+        '200':
+          description: |-
+            Utilize Esse Token no Botão acima `Authorize 🔓`
+            Sera utilizado para fazer Login na Aplicação.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Login'
+      security:
+        - basicAuth: []
+
 components:
   schemas:
+    Health:
+      type: object
+      properties:
+        uptime:
+          type: integer
+          example: 7.076872259
+        message:
+          type: string
+          example: OK
+        timestamp:
+          type: string
+          example: 2023-03-03T23:31:51.184Z
     Login:
+      type: object
+      properties:
+        token:
+          type: string
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6MSwiaWF0IjoxNjc4MzE4NDYyLCJleHAiOjE2NzgzMjE3NjJ9.g8OPS2k9v4V0Rd_fyaa1WWPdoZzfAgmGuklmN3cNHRQ
+    LoginBody:
+      required: 
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+          example: lewishamilton@gmail.com
+        password:
+          type: string
+          example: 123456
     
   # requestBodies:
 
   securitySchemes:
-
+    basicAuth:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: Token para fazer login
