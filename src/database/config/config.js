@@ -47,6 +47,9 @@ const options = {
 };
 
 module.exports = {
+  production: {
+    ...options,
+  },
   development: {
     ...options,
   },
