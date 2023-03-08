@@ -1,7 +1,5 @@
-#!/bin/sh
-echo "Starting get ready!!!"
+# entrypoint.sh
 
-sequelize migrate-db
-sequelize-cli db:create 
-sequelize-cli db:migrate
-sequelize-cli db:seed:all
+npm install
+npx sequelize-cli db:create
+npx sequelize-cli db:migrate
