@@ -78,7 +78,7 @@ Adquiri essas habilidades ao desenvolver esse projeto:
   Popula o banco de dados
 
   ```bash
-  npm run d
+  npm run seed
   # npx sequelize-cli db:seed:all
   ```
 
