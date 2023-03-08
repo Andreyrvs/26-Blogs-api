@@ -13,6 +13,21 @@ app.use(express.json());
 app.use('/', swaggerUi.serve);
 app.get('/', swaggerUi.setup(swaggerDocument));
 
+app.get('/health', (_req, res) => {
+  const healthcheck = {
+    uptime: process.uptime(),
+    message: 'Ok',
+    timestamp: new Date(),
+  };
+
+  try {
+    res.send(healthcheck);
+} catch (error) {
+    healthcheck.message = error;
+    res.status(503).send();
+}
+});
+
 app.post('/login', middlewares.body.isLoginValid, controllers.login.logIn);
 app.post('/user', middlewares.user.validateUser, controllers.user.create);
 app.get('/user', middlewares.auth, controllers.user.getAll);
