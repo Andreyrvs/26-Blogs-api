@@ -26,10 +26,12 @@ Adquiri essas habilidades ao desenvolver esse projeto:
 
 - A qualidade e a cobertura dos testes.
 
-<!-- ## Preview da Aplicação
+## Preview da Aplicação
 
-| ![Login](./aplicacao-) | ![Home](./aplicacao-) |
-| ----------- | ----------- | -->
+|.| Diagrama DER |.|
+| --- | :---: | --- |
+| | ![Home](./aplicacao-der.png) |
+|.| |.|
 
 ## Instalando Dependências
 
@@ -71,7 +73,7 @@ Adquiri essas habilidades ao desenvolver esse projeto:
   Cria o banco e realiza as `Migration`
 
   ```bash
-  npm run prestart
+  npm run createdb
   # npx sequelize-cli db:create && npx sequelize-cli db:migrate
   ```
 
@@ -82,6 +84,12 @@ Adquiri essas habilidades ao desenvolver esse projeto:
   # npx sequelize-cli db:seed:all
   ```
 
+  O banco devera ter essas tabelas
+
+  |.| Tablelas do banco |.|
+  | --- | :---: | --- |
+  || ![Login](./aplicacao-db.png) ||
+  |.| |.|
 - Para rodar o `Back-end`:
 
   :warning: Use esses comandos dentro do container
