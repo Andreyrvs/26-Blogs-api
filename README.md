@@ -103,3 +103,9 @@ Adquiri essas habilidades ao desenvolver esse projeto:
   ```bash
   npm run debug
   ```
+
+> Rota da Documentação do Swagger:
+
+  ```docker
+  localhost:3000/
+  ```
