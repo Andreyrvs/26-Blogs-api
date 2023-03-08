@@ -9,6 +9,6 @@ RUN apt-get update
 RUN apt-get install lsof
 RUN npm install
 
-ARG EnvironmentVariable
+COPY . .
 
-ENTRYPOINT [ "/bin/bash", './entrypoint.sh' ]
+ARG EnvironmentVariable

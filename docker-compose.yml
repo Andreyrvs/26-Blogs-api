@@ -15,9 +15,12 @@ services:
     depends_on:
       - db
     ports:
-      - 3000:3000
-    env_file:
-      - .env
+      - 3000:3000 
+    environment:
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
+      HOSTNAME: db
+      JWT_SECRET: secretJWT
 
   db:
     container_name: blogs_api_db
