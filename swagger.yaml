@@ -5,17 +5,15 @@ info:
   description: >-
     Este projeto trata-se de uma API e um banco de dados para a produção de
     conteúdo para um blog!
-    
-    
-    Alguns links úteis:
-    
-    - [Repositorio Blogs API](https://github.com/Andreyrvs/26-blogs-api)
 
+
+    Alguns links úteis:
+
+    - [Repositorio Blogs API](https://github.com/Andreyrvs/26-blogs-api)
   contact:
     email: cortaesai@gmail.com
     name: Andrey
     url: https://www.linkedin.com/in/andreyrv/
-    
 servers:
   - url: http://localhost:3000/
   - url: https://26-blogs-api-production.up.railway.app/
@@ -44,7 +42,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Health'
-  
   /login:
     post:
       tags:
@@ -68,13 +65,14 @@ paths:
                 $ref: '#/components/schemas/Token'
         '500':
           description: Algo deu errado
-  
   /user:
     post:
       tags:
         - user
       summary: Loga o palestrante no sistema.
-      description: O endpoint é capaz de adicionar um novo `user` a sua tabela no banco de dados;   
+      description: >-
+        O endpoint é capaz de adicionar um novo `user` a sua tabela no banco de
+        dados;
       security:
         - basicAuth: []
       requestBody:
@@ -88,12 +86,11 @@ paths:
                 $ref: '#/components/schemas/Token'
         '500':
           description: Algo deu errado
-    
     get:
       tags:
         - user
       summary: Todos usuários
-      description: ''  
+      description: ''
       security:
         - basicAuth: []
       responses:
@@ -105,11 +102,10 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/NewUser'
-        '404': 
+        '404':
           description: User Not Found
         '500':
           description: Algo deu errado
-
   /user/{userId}:
     get:
       tags:
@@ -132,11 +128,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetUser'
-        '404': 
+        '404':
           description: User does not exist
-        '500': 
+        '500':
           description: Algo deu errado
-
   /categories:
     post:
       tags:
@@ -162,12 +157,11 @@ paths:
           description: Bad Request
         '500':
           description: Algo deu errado
-
     get:
       tags:
         - categories
       summary: Todas as categorias.
-      description: Exibe todas as categorias do blog.  
+      description: Exibe todas as categorias do blog.
       security:
         - basicAuth: []
       responses:
@@ -179,7 +173,6 @@ paths:
                 $ref: '#/components/schemas/Token'
         '500':
           description: Algo deu errado
-
   /post:
     post:
       tags:
@@ -201,8 +194,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PostResponse'
-
-
 components:
   schemas:
     Health:
@@ -217,16 +208,15 @@ components:
         timestamp:
           type: string
           example: 2023-03-03T23:31:51.184Z
-    
     Token:
       type: object
       properties:
         token:
           type: string
-          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6MSwiaWF0IjoxNjc4MzE4NDYyLCJleHAiOjE2NzgzMjE3NjJ9.g8OPS2k9v4V0Rd_fyaa1WWPdoZzfAgmGuklmN3cNHRQ
-    
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6MSwiaWF0IjoxNjc4MzE4NDYyLCJleHAiOjE2NzgzMjE3NjJ9.g8OPS2k9v4V0Rd_fyaa1WWPdoZzfAgmGuklmN3cNHRQ
     Login:
-      required: 
+      required:
         - email
         - password
       type: object
@@ -237,7 +227,6 @@ components:
         password:
           type: string
           example: 123456
-    
     NewUser:
       type: object
       required:
@@ -258,7 +247,6 @@ components:
         image:
           type: string
           example: https://s.gravatar.com/avatar/410d19346c5917f390ea5131fd45c4eb?s=80
-
     GetUser:
       type: object
       properties:
@@ -273,8 +261,8 @@ components:
           example: lewishamilton@gmail.com
         image:
           type: string
-          example: https://upload.wikimedia.org/wikipedia/commons/1/18/Lewis_Hamilton_2016_Malaysia_2.jpg
-  
+          example: >-
+            https://upload.wikimedia.org/wikipedia/commons/1/18/Lewis_Hamilton_2016_Malaysia_2.jpg
     Categories:
       type: object
       required:
@@ -283,7 +271,6 @@ components:
         name:
           type: string
           example: Typescript
-
     CategoriesResponse:
       type: object
       required:
@@ -295,7 +282,6 @@ components:
         name:
           type: string
           example: Typescript
-
     Post:
       type: object
       required:
@@ -311,13 +297,12 @@ components:
           example: The whole text for the blog post goes here in this key
         categoryIds:
           type: array
-          items: 
+          items:
             type: integer
           example:
             - 1
             - 2
             - 5
-
     PostResponse:
       type: object
       properties:
@@ -339,8 +324,6 @@ components:
         userId:
           type: integer
           example: 1
-
-
   requestBodies:
     NewUser:
       description: Use o objeto com **email** e **senha**.
@@ -349,7 +332,6 @@ components:
           schema:
             $ref: '#/components/schemas/NewUser'
       required: true
-
     Categories:
       description: Nome da categoria
       content:
@@ -357,7 +339,6 @@ components:
           schema:
             $ref: '#/components/schemas/Categories'
       required: true
-
   securitySchemes:
     basicAuth:
       type: apiKey
