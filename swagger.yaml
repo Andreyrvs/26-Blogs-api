@@ -28,6 +28,8 @@ tags:
     description: Tudo sobre os usuários
   - name: categories
     description: Tudo sobre categoria dos posts
+  - name: post
+    description: Tudo sobre os posts do blog
 paths:
   /health:
     get:
@@ -175,6 +177,32 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Token'
+        '500':
+          description: Algo deu errado
+
+  /post:
+    post:
+      tags:
+        - post
+      summary: Insere uma nova categoria
+      description: adiciona uma nova categoria a sua tabela no banco de dados;
+      security:
+        - basicAuth: []
+      requestBody:
+        description: Digite o nome da Categoria
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Post'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostResponse'
+
+
 components:
   schemas:
     Health:
@@ -267,6 +295,51 @@ components:
         name:
           type: string
           example: Typescript
+
+    Post:
+      type: object
+      required:
+        - title
+        - content
+        - categoryIds
+      properties:
+        title:
+          type: string
+          example: Latest updates, August 1st
+        content:
+          type: string
+          example: The whole text for the blog post goes here in this key
+        categoryIds:
+          type: array
+          items: 
+            type: integer
+          example:
+            - 1
+            - 2
+            - 5
+
+    PostResponse:
+      type: object
+      properties:
+        published:
+          type: string
+          example: 2023-03-09T18:44:05.510Z
+        updated:
+          type: string
+          example: 2023-03-09T19:44:05.511Z
+        id:
+          type: integer
+          example: 4
+        title:
+          type: string
+          example: Latest updates, August 1st
+        content:
+          type: string
+          example: The whole text for the blog post goes here in this key
+        userId:
+          type: integer
+          example: 1
+
 
   requestBodies:
     NewUser:
