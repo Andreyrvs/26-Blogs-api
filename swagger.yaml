@@ -54,7 +54,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/LoginBody'
+              $ref: '#/components/schemas/Login'
       responses:
         '200':
           description: |-
@@ -72,9 +72,11 @@ paths:
       tags:
         - user
       summary: Loga o palestrante no sistema.
-      description: ''    
+      description: O endpoint é capaz de adicionar um novo `user` a sua tabela no banco de dados;   
       security:
         - basicAuth: []
+      requestBody:
+        $ref: '#/components/requestBodies/NewUser'
       responses:
         '201':
           description: Created
@@ -84,6 +86,7 @@ paths:
                 $ref: '#/components/schemas/Token'
         '500':
           description: Algo deu errado
+    
     get:
       tags:
         - user
@@ -99,8 +102,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/GetUser'
-                  
+                  $ref: '#/components/schemas/NewUser'
         '404': 
           description: User Not Found
         '500':
@@ -128,7 +130,7 @@ components:
           type: string
           example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6MSwiaWF0IjoxNjc4MzE4NDYyLCJleHAiOjE2NzgzMjE3NjJ9.g8OPS2k9v4V0Rd_fyaa1WWPdoZzfAgmGuklmN3cNHRQ
     
-    LoginBody:
+    Login:
       required: 
         - email
         - password
@@ -143,19 +145,24 @@ components:
     
     NewUser:
       type: object
+      required:
+        - displayName
+        - email
+        - password
+        - image
       properties:
         displayName:
           type: string
-          example: a
+          example: Andrey RV
         email:
           type: string
-          example: a
+          example: andreyemail@email.com
         password:
           type: string
-          example: a
+          example: UmaSenhaMuitoForte
         image:
           type: string
-          example: a
+          example: https://s.gravatar.com/avatar/410d19346c5917f390ea5131fd45c4eb?s=80
 
     GetUser:
       type: object
@@ -172,7 +179,16 @@ components:
         image:
           type: string
           example: https://upload.wikimedia.org/wikipedia/commons/1/18/Lewis_Hamilton_2016_Malaysia_2.jpg
-  # requestBodies:
+  
+  
+  requestBodies:
+    NewUser:
+      description: Use o objeto com **email** e **senha**.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NewUser'
+      required: true
 
   securitySchemes:
     basicAuth:
