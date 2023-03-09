@@ -108,6 +108,14 @@ paths:
         '500':
           description: Algo deu errado
 
+  /user/{id}:
+    tags:
+      - user
+    summary: Retorna um usuário
+    description: ''   
+    security:
+      - basicAuth: []
+
 components:
   schemas:
     Health:
