@@ -1,8 +1,18 @@
-DROP DATABASE IF EXISTS railway;
+-- DROP DATABASE IF EXISTS railway;
 
-CREATE DATABASE railway;
+-- CREATE DATABASE railway;
 
 USE railway;
+
+CREATE TABLE `Users` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `displayName` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `BlogPosts` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -14,13 +24,13 @@ CREATE TABLE `BlogPosts` (
   PRIMARY KEY (`id`),
   KEY `userId` (`userId`),
   CONSTRAINT `BlogPosts_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `Users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `Categories` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `PostCategories` (
   `postId` int NOT NULL,
@@ -29,20 +39,10 @@ CREATE TABLE `PostCategories` (
   KEY `categoryId` (`categoryId`),
   CONSTRAINT `PostCategories_ibfk_1` FOREIGN KEY (`postId`) REFERENCES `BlogPosts` (`id`) ON DELETE CASCADE,
   CONSTRAINT `PostCategories_ibfk_2` FOREIGN KEY (`categoryId`) REFERENCES `Categories` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `SequelizeMeta` (
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(255) NOT NULL,
   PRIMARY KEY (`name`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
-
-CREATE TABLE `Users` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `displayName` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `image` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+);
