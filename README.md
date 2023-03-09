@@ -28,10 +28,10 @@ Adquiri essas habilidades ao desenvolver esse projeto:
 
 ## Preview da Aplicação
 
-|.| Diagrama DER |.|
-| --- | :---: | --- |
-| | ![Home](./aplicacao-der.png) |
-|.| |.|
+| Swagger | Diagrama DER |
+| :---: | :---: |
+| ![Home](./aplicacao-home.png) | ![DER](./aplicacao-der.png) |
+| | |
 
 ## Instalando Dependências
 
@@ -89,7 +89,8 @@ Adquiri essas habilidades ao desenvolver esse projeto:
   |.| Tablelas do banco |.|
   | --- | :---: | --- |
   || ![Login](./aplicacao-db.png) ||
-  |.| |.|
+  || ||
+
 - Para rodar o `Back-end`:
 
   :warning: Use esses comandos dentro do container
