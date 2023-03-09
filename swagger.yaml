@@ -20,6 +20,8 @@ servers:
   - url: http://localhost:3000/
   - url: https://26-blogs-api-production.up.railway.app/
 tags:
+  - name: health
+    description: Saúde da API
   - name: login
     description: Login da Aplicação
   - name: user
@@ -40,14 +42,15 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Health'
+  
   /login:
     post:
       tags:
         - login
-      summary: Loga o palestrante no sistema.
-      description: ''
+      summary: Loga o usuário na aplicação.
+      description: Somente usuários que foram criados podem fazer login
       requestBody:
-        description: Insira o Palestrante com respectivos dados
+        description: Insira o Usuário com respectivos dados
         content:
           application/json:
             schema:
@@ -60,9 +63,47 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Login'
+                $ref: '#/components/schemas/Token'
+        '500':
+          description: Algo deu errado
+  
+  /user:
+    post:
+      tags:
+        - user
+      summary: Loga o palestrante no sistema.
+      description: ''    
       security:
         - basicAuth: []
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Token'
+        '500':
+          description: Algo deu errado
+    get:
+      tags:
+        - user
+      summary: Todos usuários
+      description: ''  
+      security:
+        - basicAuth: []
+      responses:
+        '200':
+          description: Array de objetos com dados dos usuarios.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GetUser'
+        '404': 
+          description: User Not Found
+        '500':
+          description: Algo deu errado
 
 components:
   schemas:
@@ -78,12 +119,14 @@ components:
         timestamp:
           type: string
           example: 2023-03-03T23:31:51.184Z
-    Login:
+    
+    Token:
       type: object
       properties:
         token:
           type: string
           example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6MSwiaWF0IjoxNjc4MzE4NDYyLCJleHAiOjE2NzgzMjE3NjJ9.g8OPS2k9v4V0Rd_fyaa1WWPdoZzfAgmGuklmN3cNHRQ
+    
     LoginBody:
       required: 
         - email
@@ -97,6 +140,37 @@ components:
           type: string
           example: 123456
     
+    NewUser:
+      type: object
+      properties:
+        displayName:
+          type: string
+          example: a
+        email:
+          type: string
+          example: a
+        password:
+          type: string
+          example: a
+        image:
+          type: string
+          example: a
+
+    GetUser:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        displayName:
+          type: string
+          example: Lewis Hamilton
+        email:
+          type: string
+          example: lewishamilton@gmail.com
+        image:
+          type: string
+          example: https://upload.wikimedia.org/wikipedia/commons/1/18/Lewis_Hamilton_2016_Malaysia_2.jpg
   # requestBodies:
 
   securitySchemes:

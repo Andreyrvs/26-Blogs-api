@@ -25,7 +25,7 @@
     "createdb": "npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
     "drop": "npx sequelize-cli db:drop",
     "seed": "npx sequelize-cli db:seed:all",
-    "debug": "nodemon .  --watch './swagger.yaml'",
+    "debug": "nodemon ./src/server.js  -L --watch './swagger.yaml'",
     "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json ."
   },
   "devDependencies": {
