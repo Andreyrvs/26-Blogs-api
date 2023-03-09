@@ -161,6 +161,20 @@ paths:
         '500':
           description: Algo deu errado
 
+    get:
+      tags:
+        - categories
+      summary: Todas as categorias.
+      description: Exibe todas as categorias do blog.  
+      security:
+        - basicAuth: []
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Token'
 components:
   schemas:
     Health:
